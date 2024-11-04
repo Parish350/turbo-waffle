@@ -15,3 +15,9 @@ alienship = Actor("alienship")
 def draw():
          alienship.x = random.randint(50,450)
          alienship.y = random.randint(50,450)
+
+alien = Actor("alien")
+
+def draw():
+         alien.x = random.randint(50,450)
+         alien.y = random.randint(50,450)         
