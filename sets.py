@@ -17,3 +17,10 @@ print(SetA|SetB)
 print(SetA&SetB)
 print(SetA-SetB)
 print(SetA^SetB)
+
+
+SetC = {7,8,9,10,11,12}
+print(SetA|SetB|SetC)
+print(SetA&SetB&SetC)
+print(SetA-SetB-SetC)
+print(SetA^SetB^SetC)
