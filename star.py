@@ -4,12 +4,26 @@ import random
 HEIGHT = 600
 WIDTH = 1000
 stars = []
-for i in range(10):
-    star = Actor("star.png")
-    star.x = random.randint(50,450)
-    star.y = random.randint(50,450)
-    stars.append(star)
+Score = 0
+level = 1
+players = []
+animations = []
+
     
+def update():   
+   global stars,level
+   if len(stars) == 0:
+    make_stars()
+    for star in stars:
+     duration = 12
+     star.anchor = "center","bottom"
+     animation = animate(star, duration = duration, y = HEIGHT)
+
+def make_stars():
+  global stars,images,level
+  star = Actor("star")
+  star.x = WIDTH/(level+1)
+  stars.append(star)  
 
 def draw():
           screen.blit("space background",(0,0)) 
