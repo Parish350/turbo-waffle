@@ -10,6 +10,13 @@ players = []
 animations = []
 images = ["star"]
 Final_level = 5 
+game_over = False
+game_complete = False
+def handle_gameover():
+ global game_over
+ game_over = True 
+ if game_over:
+  screen.draw.text("Game Over",(WIDTH/2,HEIGHT/2)) 
 def update():   
    global stars,level
    if len(stars) == 0:
@@ -17,7 +24,7 @@ def update():
     for star in stars:
      duration = 12
      star.anchor = "center","bottom"
-     animation = animate(star, duration = duration, y = HEIGHT)
+     animation = animate(star, duration = duration, y = HEIGHT,on_finished = handle_gameover)
 
 def draw():
           screen.blit("space background",(0,0)) 
