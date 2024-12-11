@@ -12,8 +12,13 @@ animations = []
 Final_level = len(images)
 game_over = False
 game_complete = False
+def handle_gameover():
+ global game_over
+ game_over = True  
 def draw ():
-  screen.blit("universe",(0,0))
+  screen.blit("universe",(0,0)) 
+  if game_over:
+   screen.draw.text("Game Over",(WIDTH/2,HEIGHT/2))
   for player in players:
      player.draw()
 
@@ -24,7 +29,7 @@ def update():
     for player in players:
      duration = 10
      player.anchor = "center","bottom"
-     animation = animate(player, duration = duration, y = HEIGHT)
+     animation = animate(player, duration = duration, y = HEIGHT,on_finished = handle_gameover)
      animations.append(animation)
 
 def make_players():
@@ -52,4 +57,4 @@ def on_mouse_down(pos):
             if animation.running:
              animation.stop()
           animations=[]
-pgzrun.go()  
+pgzrun.go() 
