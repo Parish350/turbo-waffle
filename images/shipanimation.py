@@ -2,8 +2,8 @@ import random
 import pgzrun
 import itertools
 
-HEIGHT = 700
-WIDTH = 800
+HEIGHT = 900
+WIDTH = 900
 block = Actor('block')
 block.x = 400
 block.y = 400
@@ -14,14 +14,14 @@ BLOCK_POSITIONS = [
  (50,50), 
  (750,650),
  (50,650),
- (750,50),
+ (750,50)
 ]
 block_positions = itertools.cycle(BLOCK_POSITIONS)
 def move_block():
  animate(
   block,
   'bounce_end',
-  duration=1,
+  duration = 1,
   pos=next(block_positions)
  )
 
@@ -33,8 +33,11 @@ def draw():
  screen.fill("blue")
  block.draw()
  ship.draw()
+ animation = animate(ship, duration = duration, y = HEIGHT,on_finished = handle_gameover)
 
-
+move_ship()
+clock.schedule_interval(move_ship,2)
 move_block()
 clock.schedule_interval(move_block,2)
+
 pgzrun.go()
