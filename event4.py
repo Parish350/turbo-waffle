@@ -5,7 +5,7 @@ HEIGHT = 800
 
 screen = pygame.display.set_mode((WIDTH,HEIGHT))
 img=pygame.image.load("ball.png")
-img=pygame.transform.scale(img,(WIDTH,HEIGHT))
+img=pygame.transform.scale(img,(200,200))
 keys = ["uparrow","downarrow","rightarrow","leftarrow"]
 font=pygame.font.SysFont("Times New Roman",50)
 text=font.render("ball",True,"red")
