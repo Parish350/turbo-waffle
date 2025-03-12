@@ -1,7 +1,7 @@
 import pygame
 pygame.init() 
 WIDTH =  800
-HEIGHT = 800
+HEIGHT = 600
 
 screen = pygame.display.set_mode((WIDTH,HEIGHT))
 #load the space picture
@@ -10,7 +10,10 @@ redspaceshipx = 600
 redspaceshipy = 200
 yellowspaceshipx = 200
 yellowspaceshipy = 200
-
+HEALTH_FONT = pygame.font.SysFont('comicsans',40)
+red_health = 100
+yellow_health = 100
+winner_text = ""
 border = pygame.Rect(395,0,10,600) 
 red = pygame.image.load("redspaceship.png") 
 red = pygame.transform.scale(red,(55,40))
@@ -42,7 +45,13 @@ while run:
  screen.blit(img,(0,0))
  screen.blit(red,(RED.x,RED.y))
  screen.blit(yellow,(YELLOW.x,YELLOW.y))
+ red_health_text = HEALTH_FONT.render("Health:" +str(red_health),1,"white")
+ yellow_health_text = HEALTH_FONT.render("Health:" +str(yellow_health),1,"white") 
+ screen.blit(red_health_text,(500,50))
+ screen.blit(yellow_health_text,(100,50))
  pygame.draw.rect(screen,"white",border)
+ win_Text = HEALTH_FONT.render(winner_text,1,"white")
+ screen.blit(win_Text,(400,300))
  for bullet in yellow_bullets: 
    pygame.draw.rect(screen,"yellow",bullet)
  for bullet in red_bullets: 
@@ -73,5 +82,22 @@ while run:
         if event.key == pygame.K_f:
            bullet = pygame.Rect(RED.x,RED.y,15,5)   
            red_bullets.append(bullet)      
+
+ for bullet in red_bullets:
+    bullet.x -= 5
+    if YELLOW.colliderect(bullet): 
+     red_bullets.remove(bullet)  
+     red_health -= 1   
+ for bullet in yellow_bullets:
+    bullet.x += 5   
+    if RED.colliderect(bullet): 
+     yellow_bullets.remove(bullet)  
+     yellow_health -= 1  
+ if red_health <= 0:
+    winner_text = "Yellow Wins!"   
+ if yellow_health <= 0:
+    winner_text = "Red Wins!"   
+ if winner_text != "":   
+     break
  pygame.display.update()
  
