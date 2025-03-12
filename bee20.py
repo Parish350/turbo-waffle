@@ -64,45 +64,13 @@ while run:
    pygame.quit() 
   if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_UP:
-            beey -= 5
+            BEE.y -= 5
         if event.key == pygame.K_DOWN:
-            beey += 5
+            BEE.y += 5
         if event.key == pygame.K_RIGHT:   
-            beex += 5
+            BEE.x += 5
         if event.key == pygame.K_LEFT:
-           beex -= 5
-        if event.key == pygame.K_UP:
-            flower1y -= 5
-        if event.key == pygame.K_DOWN:
-            flower1y += 5
-        if event.key == pygame.K_RIGHT:   
-            flower1x += 5
-        if event.key == pygame.K_LEFT:
-           flower1x -= 5
-        if event.key == pygame.K_UP:
-            flower2y -= 5
-        if event.key == pygame.K_DOWN:
-            flower2y += 5
-        if event.key == pygame.K_RIGHT:   
-            flower2x += 5
-        if event.key == pygame.K_LEFT:
-           flower2x -= 5
-        if event.key == pygame.K_UP:
-            flower3y -= 5
-        if event.key == pygame.K_DOWN:
-            flower3y += 5
-        if event.key == pygame.K_RIGHT:   
-            flower3x += 5
-        if event.key == pygame.K_LEFT:
-           flower3x -= 5 
-        if event.key == pygame.K_UP:
-            flower4y -= 5
-        if event.key == pygame.K_DOWN:
-            flower4y += 5
-        if event.key == pygame.K_RIGHT:   
-            flower4x += 5
-        if event.key == pygame.K_LEFT:
-           flower4x -= 5    
+           BEE.x -= 5 
     
  pygame.display.update()
  
