@@ -15,6 +15,9 @@ class Bin(pygame.sprite.Sprite):
         self.rect = self.image.get_rect() 
 
 binclass = pygame.sprite.Group()
+recycleclass = pygame.sprite.Group()
+nonrecycle = pygame.sprite.Group()
+
 bin1 = Bin()
 binclass.add(bin1)
 
@@ -23,11 +26,12 @@ class Plasticbag(pygame.sprite.Sprite):
    def __init__ (self):
         super().__init__()     
         self.image = pygame.image.load("coverbag.png")
-        self.image = pygame.transform.scale(self.image,(200,250))
+        self.image = pygame.transform.scale(self.image,(100,120))
         self.rect = self.image.get_rect()    
 
 plasticbag1 = Plasticbag()
-binclass.add(plasticbag1)
+nonrecycle.add(plasticbag1)
+
 
 class Bag(pygame.sprite.Sprite):
 
@@ -38,7 +42,7 @@ class Bag(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()    
 
 bag1 = Bag()
-binclass.add(bag1)
+recycleclass.add(bag1)
 
 run = True
 while run:
@@ -52,5 +56,7 @@ while run:
     bin1.rect.center = pos
 
  binclass.draw(screen)
+ recycleclass.draw(screen)
+ nonrecycle.draw(screen)
  pygame.display.update()
 
