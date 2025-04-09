@@ -74,5 +74,10 @@ while run:
  binclass.draw(screen)
  recycleclass.draw(screen)
  nonrecycle.draw(screen)
- pygame.display.update()
-
+ r_items = pygame.sprite.spritecollide(bin,recycleclass,True)
+ for item in r_items:
+    Score += 1
+ nonr_items = pygame.sprite.spritecollide(bin,nonrecycle,True)
+ for item in nonr_items:
+    Score -= 1   
+pygame.display.update()
