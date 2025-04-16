@@ -31,11 +31,10 @@ pirateclass = pygame.sprite.Group()
 soldierclass = pygame.sprite.Group()
 gemclass = pygame.sprite.Group()
 
-for i in range(5):
- pirate1 = Pirate()
- pirate1.rect.x = random.randint(50,WIDTH-50)
- pirate1.rect.y = random.randint(50,HEIGHT-50)
- pirateclass.add(pirate1)
+pirate1 = Pirate()
+pirate1.rect.x = random.randint(50,WIDTH-50)
+pirate1.rect.y = random.randint(50,HEIGHT-50)
+pirateclass.add(pirate1)
 
 
 class Soldier(pygame.sprite.Sprite):
@@ -60,7 +59,7 @@ class Gem(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image,(50,50))
         self.rect = self.image.get_rect()    
 
-for i in range(9):
+for i in range(12):
  gem1 = Gem()
  gem1.rect.x = random.randint(50,WIDTH-50)
  gem1.rect.y = random.randint(50,HEIGHT-50)
@@ -83,5 +82,14 @@ while run:
  pirateclass.draw(screen)
  soldierclass.draw(screen)
  gemclass.draw(screen)
+ p_stones = pygame.sprite.spritecollide(pirate1,gemclass,True)
+ for stone in p_stones:
+    Score += 1
+    text=font.render(f"Score:{Score}",True,"yellow")
+
+ s_stones = pygame.sprite.spritecollide(pirate1,soldierclass,True)
+ for ruby in s_stones:
+    Score -= 1  
+    text=font.render(f"Score:{Score}",True,"yellow")
  pygame.display.update()
 
