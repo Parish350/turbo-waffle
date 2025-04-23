@@ -1,6 +1,7 @@
 import pygame
 import random
 pygame.init() 
+pygame.mixer.init() 
 
 WIDTH =  700
 HEIGHT = 700
@@ -17,6 +18,9 @@ images = [stone1,stone2,stone3]
 font=pygame.font.SysFont("Times New Roman",50) 
 Score = 0
 text=font.render(f"Score:{Score}",True,"yellow")
+
+Diamond = pygame.mixer.Sound("diamond.mp3")
+Gunshoot = pygame.mixer.Sound("gunshot.mp3")
 
 
 class Pirate(pygame.sprite.Sprite):
@@ -85,11 +89,13 @@ while run:
  p_stones = pygame.sprite.spritecollide(pirate1,gemclass,True)
  for stone in p_stones:
     Score += 1
+    Diamond.play()
     text=font.render(f"Score:{Score}",True,"yellow")
 
  s_stones = pygame.sprite.spritecollide(pirate1,soldierclass,True)
  for ruby in s_stones:
-    Score -= 1  
+    Score -= 1 
+    Gunshoot.play() 
     text=font.render(f"Score:{Score}",True,"yellow")
  pygame.display.update()
 
