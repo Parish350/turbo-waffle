@@ -1,5 +1,6 @@
 import pygame
 pygame.init() 
+pygame.mixer.init()
 WIDTH =  800
 HEIGHT = 600
 
@@ -26,6 +27,8 @@ yellow = pygame.transform.rotate(yellow,270)
 YELLOW = pygame.Rect(yellowspaceshipx,yellowspaceshipy,55,40)
 yellow_bullets = []
 
+shoot = pygame.mixer.Sound("gunshot.mp3")
+hit = pygame.mixer.Sound("grenade.mp3")
 
 class Spaceship(pygame.sprite.Sprite):
  def __init__(self,x,y,color):
@@ -78,21 +81,25 @@ while run:
            yellowspaceshipx -= 10  
         if event.key == pygame.K_l: 
            bullet = pygame.Rect(YELLOW.x,YELLOW.y,15,5)
-           yellow_bullets.append(bullet)    
+           yellow_bullets.append(bullet) 
+           shoot.play()   
         if event.key == pygame.K_f:
            bullet = pygame.Rect(RED.x,RED.y,15,5)   
-           red_bullets.append(bullet)      
+           red_bullets.append(bullet) 
+           shoot.play()        
 
  for bullet in red_bullets:
     bullet.x -= 5
     if YELLOW.colliderect(bullet): 
      red_bullets.remove(bullet)  
-     red_health -= 1   
+     red_health -= 1 
+     hit.play()  
  for bullet in yellow_bullets:
     bullet.x += 5   
     if RED.colliderect(bullet): 
      yellow_bullets.remove(bullet)  
-     yellow_health -= 1  
+     yellow_health -= 1 
+     hit.play()    
  if red_health <= 0:
     winner_text = "Yellow Wins!"   
  if yellow_health <= 0:
