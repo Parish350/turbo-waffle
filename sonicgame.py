@@ -2,8 +2,8 @@ import pygame
 import random
 pygame.init() 
 pygame.mixer.init()
-WIDTH =  1920
-HEIGHT = 1080
+WIDTH =  1000
+HEIGHT = 800
 
 
 img = pygame.image.load("greenhillbackground.png")
@@ -14,7 +14,7 @@ spikesbot = pygame.image.load("spikesbot.png")
 font=pygame.font.SysFont("Times New Roman",50) 
 Score = 0
 text=font.render(f"Score:{Score}",True,"red")
-spikesbot_gap = 150
+spikesbot_gap = 120
 spikesbot_frequency = 1500 #milliseconds
 last_spike = pygame.time.get_ticks() -spikesbot_frequency
 game_over = False
@@ -24,6 +24,7 @@ class Spike(pygame.sprite.Sprite):
  def __init__ (self,x,y,pos):
         super().__init__()     
         self.image = pygame.image.load("spikesbot.png")
+        self.image = pygame.transform.scale(self.image,(100,400))
         self.rect = self.image.get_rect() 
         if pos == 1:
          self.image = pygame.transform.flip(self.image,False,True)
@@ -37,30 +38,31 @@ class Spike(pygame.sprite.Sprite):
 
 class Sonic(pygame.sprite.Sprite):
 
- def __init__ (self):
+ def __init__ (self,x,y):
         super().__init__()     
         self.image = pygame.image.load("sonicrunning.png")
-        self.image = pygame.transform.scale(self.image,(50,50))
+        self.image = pygame.transform.scale(self.image,(100,100))
         self.rect = self.image.get_rect() 
+        self.rect.center = x,y
 
 sonicclass = pygame.sprite.Group()
 spikesbotclass = pygame.sprite.Group()
 
-sonic1 = Sonic() 
+sonic1 = Sonic(100,500)
 sonicclass.add(sonic1)
 
 
 clock = pygame.time.Clock()
 
+
 run = True
 while run:
- if game_over == False:
-  Score = Score+1
- text=font.render(f"Score:{Score}",True,"red")
  clock.tick(60)
- screen.fill("White")
- screen.blit(img,(0,0))
- screen.blit(text,(50,50))  
+ if game_over == False:
+   Score = Score+1
+   text=font.render(f"Score:{Score}",True,"red") 
+   screen.blit(img,(0,0))
+   screen.blit(text,(50,50))  
  for event in pygame.event.get():
   if event.type == pygame.QUIT:
      pygame.quit() 
